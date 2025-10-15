@@ -1,0 +1,2976 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>S&S Life Easy Health Care - Your Health, Made Simple</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    * { 
+      margin: 0; 
+      padding: 0; 
+      box-sizing: border-box; 
+    }
+    
+    :root {
+      --primary: #4A90E2; /* Modern Blue */
+      --primary-light: #7AAFFF;
+      --primary-dark: #2D6BBE;
+      --secondary: #50E3C2; /* Teal/Mint */
+      --accent: #FF6B6B; /* Retain a vibrant accent red */
+      --text: #344054; /* Darker, softer text */
+      --text-light: #667085; /* Softer light text */
+      --bg: #FFFFFF; /* White */
+      --bg-light: #F9FAFB; /* Light Gray */
+      --bg-dark: #101828; /* Darker background for dark mode */
+      --shadow: 0px 4px 12px rgba(0, 0, 0, 0.05);
+      --border: #D0D5DD;
+      --input-bg: #FFFFFF;
+      --card-bg: #FFFFFF;
+      --transition: all 0.3s ease;
+      --bg-rgb: 255, 255, 255; /* RGB for --bg */
+    }
+    
+    body {
+      font-family: 'Poppins', sans-serif;
+      line-height: 1.6;
+      background: var(--bg);
+      color: var(--text);
+      transition: var(--transition);
+      overflow-x: hidden;
+    }
+    
+    body.dark {
+      --text: #E0E0E0;
+      --text-light: #B0B0B0;
+      --bg: #1A202C;
+      --bg-light: #2D3748;
+      --bg-dark: #171923;
+      --shadow: 0px 4px 15px rgba(0, 0, 0, 0.3);
+      --border: #4A5568;
+      --input-bg: #2D3748;
+      --card-bg: #2D3748;
+      --bg-dark-rgb: 26, 32, 44; /* RGB for --bg-dark */
+    }
+    
+    /* Enhanced Header Styles */
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1rem 2rem;
+      background: rgba(var(--bg-rgb), 0.95);
+      backdrop-filter: blur(8px);
+      box-shadow: var(--shadow);
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      transition: var(--transition);
+    }
+    
+    body.dark header { 
+      background: rgba(var(--bg-dark-rgb), 0.95);
+      box-shadow: 0 4px 20px rgba(0,0,0,0.4);
+    }
+    
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    
+    .logo-icon {
+      color: var(--primary);
+      font-size: 2.3rem;
+      animation: pulse 2s infinite;
+    }
+    
+    @keyframes pulse {
+      0% { transform: scale(1); }
+      50% { transform: scale(1.05); }
+      100% { transform: scale(1); }
+    }
+    
+    .logo-text {
+      font-size: 1.7rem;
+      font-weight: 700;
+      background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+      -webkit-background-clip: text;
+      background-clip: text; /* Standard property for compatibility */
+      -webkit-text-fill-color: transparent;
+      letter-spacing: -0.5px;
+    }
+    
+    /* Enhanced Navigation */
+    nav {
+      display: flex;
+      align-items: center;
+    }
+    
+    .nav-menu {
+      list-style: none;
+      display: flex;
+      gap: 0;
+      background: var(--card-bg);
+      border-radius: 12px;
+      padding: 8px 10px;
+      box-shadow: var(--shadow);
+    }
+    
+    body.dark .nav-menu {
+      background: var(--bg-light);
+    }
+    
+    .nav-item {
+      position: relative;
+    }
+    
+    .nav-link {
+      text-decoration: none;
+      color: var(--text);
+      font-weight: 600;
+      padding: 8px 15px;
+      border-radius: 8px;
+      transition: var(--transition);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 0.9rem;
+      white-space: nowrap;
+    }
+    
+    body.dark .nav-link {
+      color: var(--text);
+    }
+    
+    .nav-link i {
+      font-size: 1.1rem;
+      transition: var(--transition);
+    }
+    
+    .nav-link:hover {
+      color: var(--primary);
+      background: rgba(var(--primary-rgb), 0.08);
+    }
+    
+    .nav-link:hover i {
+      transform: translateY(-2px);
+    }
+    
+    .nav-link.active {
+      background: var(--primary);
+      color: white;
+      box-shadow: 0 4px 12px rgba(var(--primary-rgb), 0.3);
+    }
+    
+    .nav-link.active i {
+      color: white;
+    }
+    
+    /* Mobile Navigation */
+    .nav-toggle {
+      display: none;
+      background: none;
+      border: none;
+      color: var(--text);
+      font-size: 1.6rem;
+      padding: 8px;
+      cursor: pointer;
+    }
+    .nav-toggle:focus {
+      outline: 2px solid var(--primary);
+      outline-offset: 2px;
+    }
+
+    @media (max-width: 900px) {
+      header {
+        display: grid;
+        grid-template-columns: auto auto auto;
+        align-items: center;
+        gap: 10px;
+      }
+      .nav-toggle {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+      }
+      nav {
+        grid-column: 1 / -1;
+        width: 100%;
+      }
+      .nav-menu {
+        display: none;
+        flex-direction: column;
+        gap: 8px;
+        padding: 10px;
+        border-radius: 10px;
+        background: var(--card-bg);
+        box-shadow: 0 8px 24px rgba(0,0,0,0.08);
+        margin-top: 8px;
+      }
+      .nav-menu.open {
+        display: flex;
+      }
+      .header-buttons {
+        justify-self: end;
+      }
+    }
+
+    /* Header Buttons */
+    .header-buttons {
+      display: flex;
+      align-items: center;
+      gap: 15px;
+    }
+    
+    .login-btn {
+      background: var(--primary);
+      color: white;
+      padding: 10px 22px;
+      border-radius: 8px;
+      text-decoration: none;
+      font-weight: 500;
+      transition: var(--transition);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      box-shadow: 0 4px 12px rgba(var(--primary-rgb), 0.2);
+    }
+    
+    .login-btn:hover {
+      background: var(--primary-dark);
+      transform: translateY(-2px);
+      box-shadow: 0 6px 16px rgba(var(--primary-rgb), 0.3);
+    }
+    
+    .theme-toggle {
+      padding: 10px;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      background: var(--card-bg);
+      font-size: 1.2rem;
+      width: 44px;
+      height: 44px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: var(--transition);
+      box-shadow: var(--shadow);
+    }
+    
+    .theme-toggle:hover {
+      transform: translateY(-2px) scale(1.05);
+      background: var(--primary);
+      color: white;
+    }
+
+    /* Extra-small mobile refinements */
+    @media (max-width: 600px) {
+      :root {
+        --section-padding: 2.5rem 1rem;
+      }
+      h1, .hero-title, .section-title {
+        font-size: 1.35rem;
+        line-height: 1.25;
+      }
+      h2 { font-size: 1.15rem; }
+      p, li, .nav-link span { font-size: 0.95rem; }
+
+      header .logo span { font-size: 1rem; }
+      .header-buttons .login-btn { padding: 8px 14px; }
+      .theme-toggle { padding: 8px; }
+
+      .search-bar { padding: 8px 10px; }
+      .search-bar input {
+        width: 100%;
+        font-size: 0.95rem;
+        padding: 10px 10px 10px 34px;
+      }
+
+      .hospitals-container,
+      .remedies-container,
+      .diseases-container,
+      .books-container {
+        grid-template-columns: 1fr;
+        gap: 14px;
+      }
+
+      .hospital-image,
+      .remedy-image,
+      .disease-image,
+      .book-image {
+        height: 180px;
+        border-radius: 8px 8px 0 0;
+      }
+
+      .hospital-card,
+      .remedy-card,
+      .disease-card,
+      .book-card {
+        border-radius: 10px;
+        box-shadow: 0 4px 14px rgba(0,0,0,0.06);
+      }
+
+      .hospital-actions {
+        flex-wrap: wrap;
+      }
+      .action-btn { width: 100%; justify-content: center; }
+
+      .pagination { gap: 6px; }
+      .page-btn { padding: 8px 10px; }
+
+      footer .footer-links { gap: 10px; flex-wrap: wrap; }
+    }
+    
+    /* 3D Hero Section */
+    .hero-3d {
+      height: 80vh;
+      position: relative;
+      overflow: hidden;
+      background: url('https://images.unsplash.com/photo-1532938911079-1b06ac7ceec7?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80') no-repeat center center/cover;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+    }
+    
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      color: white;
+      padding: 0 2rem;
+      max-width: 900px;
+    }
+    
+    .hero-content h1 {
+      font-size: 3.2rem;
+      margin-bottom: 1.5rem;
+      line-height: 1.2;
+      text-shadow: 2px 2px 8px rgba(0,0,0,0.5);
+    }
+    
+    .hero-content p {
+      font-size: 1.3rem;
+      margin-bottom: 2.5rem;
+      max-width: 800px;
+      text-shadow: 1px 1px 4px rgba(0,0,0,0.5);
+    }
+    
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      margin: 0.5rem;
+      padding: 1rem 2.2rem;
+      background: white;
+      color: var(--primary);
+      border-radius: 8px;
+      text-decoration: none;
+      font-weight: bold;
+      transition: var(--transition);
+      border: 2px solid white;
+      box-shadow: 0 6px 20px rgba(0,0,0,0.1);
+    }
+    
+    .btn:hover {
+      background: transparent;
+      color: white;
+      transform: translateY(-3px);
+      box-shadow: 0 8px 25px rgba(0,0,0,0.25);
+    }
+    
+    .btn-secondary {
+      background: transparent;
+      color: white;
+      border: 2px solid white;
+    }
+    
+    .btn-secondary:hover {
+      background: white;
+      color: var(--primary);
+    }
+    
+    /* Welcome Section */
+    .welcome {
+      padding: 5rem 2rem;
+      text-align: center;
+      background: var(--bg-light);
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .floating-elements {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+    }
+    
+    .floating-element {
+      position: absolute;
+      font-size: 2rem;
+      opacity: 0.1;
+      animation: float 15s infinite linear;
+    }
+    
+    @keyframes float {
+      0% { transform: translateY(0) rotate(0deg); }
+      50% { transform: translateY(-20px) rotate(180deg); }
+      100% { transform: translateY(0) rotate(360deg); }
+    }
+    
+    .welcome-content {
+      max-width: 900px;
+      margin: 0 auto;
+      position: relative;
+      z-index: 2;
+    }
+    
+    .welcome-icon {
+      font-size: 4rem;
+      color: var(--primary);
+      margin-bottom: 1.5rem;
+      animation: bounce 2s infinite;
+    }
+    
+    @keyframes bounce {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-10px); }
+    }
+    
+    .welcome h2 {
+      font-size: 2.2rem;
+      margin-bottom: 1.5rem;
+      color: var(--primary);
+    }
+    
+    .welcome-tagline {
+      font-size: 1.3rem;
+      margin-bottom: 2rem;
+      color: var(--text-light);
+      font-weight: 300;
+    }
+    
+    .welcome-text {
+      font-size: 1.1rem;
+      margin-bottom: 2rem;
+      line-height: 1.8;
+    }
+    
+    .welcome-highlights {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 2rem;
+      margin-top: 3rem;
+    }
+    
+    .highlight {
+      flex: 1;
+      min-width: 200px;
+      max-width: 250px;
+      padding: 2rem 1rem;
+      background: var(--card-bg);
+      border-radius: 10px;
+      box-shadow: var(--shadow);
+      transition: var(--transition);
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .highlight:before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 5px;
+      background: linear-gradient(to right, var(--primary), var(--primary-light));
+    }
+    
+    .section-hidden {
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+    }
+    
+    .section-visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    
+    .highlight:hover {
+      transform: translateY(-5px) scale(1.01);
+      box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+    }
+    
+    .highlight-icon {
+      font-size: 2.8rem;
+      color: var(--primary);
+      margin-bottom: 1rem;
+    }
+    
+    /* About Us Section */
+    .about-section {
+      padding: 5rem 2rem;
+      background: var(--bg);
+      text-align: center;
+    }
+
+    .about-content {
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .about-intro {
+      font-size: 1.3rem;
+      margin-bottom: 3rem;
+      color: var(--text-light);
+      max-width: 800px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .about-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 2rem;
+      margin-top: 3rem;
+    }
+
+    .about-card {
+      background: var(--card-bg);
+      padding: 2.5rem;
+      border-radius: 10px;
+      box-shadow: var(--shadow);
+      transition: var(--transition);
+      text-align: left;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+    }
+
+    .about-card:hover {
+      transform: translateY(-5px) scale(1.01);
+      box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+    }
+
+    .about-icon {
+      font-size: 3.2rem;
+      color: var(--primary);
+      margin-bottom: 1.5rem;
+    }
+
+    .about-card h3 {
+      font-size: 1.6rem;
+      color: var(--text);
+      margin-bottom: 1rem;
+    }
+
+    .about-card p, .about-card ul {
+      font-size: 1rem;
+      color: var(--text);
+      line-height: 1.7;
+    }
+
+    .about-card ul {
+      list-style: none;
+      padding-left: 0;
+      margin-top: 1rem;
+    }
+
+    .about-card ul li {
+      margin-bottom: 0.5rem;
+      position: relative;
+      padding-left: 20px;
+    }
+
+    .about-card ul li:before {
+      content: '\2713'; /* Checkmark icon */
+      position: absolute;
+      left: 0;
+      color: var(--secondary);
+      font-weight: bold;
+    }
+
+    body.dark .about-card {
+      background: var(--bg-light);
+    }
+    
+    /* Enhanced Hospitals Section */
+    .hospitals-section {
+      padding: 5rem 2rem;
+      background: var(--bg);
+    }
+    
+    .section-title {
+      font-size: 2.3rem;
+      margin-bottom: 3rem;
+      color: var(--primary);
+      position: relative;
+      display: inline-block;
+      text-align: center;
+      width: 100%;
+    }
+    
+    .section-title:after {
+      content: '';
+      position: absolute;
+      width: 50%;
+      height: 4px;
+      background: linear-gradient(to right, var(--primary), var(--primary-light));
+      bottom: -10px;
+      left: 25%;
+      border-radius: 2px;
+    }
+    
+    /* Search Bar Styles */
+    .search-bar {
+      margin-bottom: 2rem;
+      max-width: 700px;
+      margin-left: auto;
+      margin-right: auto;
+      position: relative;
+    }
+
+    .search-bar input {
+      width: 100%;
+      padding: 12px 15px 12px 45px;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      font-size: 1rem;
+      color: var(--text);
+      background: var(--input-bg);
+      transition: var(--transition);
+    }
+
+    body.dark .search-bar input {
+      background: var(--bg-dark);
+      border-color: var(--border);
+      color: var(--text);
+    }
+
+    .search-bar input:focus {
+      outline: none;
+      border-color: var(--primary);
+      box-shadow: 0 0 0 3px rgba(var(--primary-rgb), 0.15);
+    }
+
+    .search-bar .search-icon {
+      position: absolute;
+      left: 15px;
+      top: 50%;
+      transform: translateY(-50%);
+      color: var(--text-light);
+      font-size: 1rem;
+    }
+    
+    .hospitals-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+      gap: 2rem;
+      max-width: 1400px;
+      margin: 0 auto;
+    }
+    
+    .hospital-card {
+      background: var(--card-bg);
+      border-radius: 10px;
+      overflow: hidden;
+      box-shadow: var(--shadow);
+      transition: var(--transition);
+    }
+    
+    .hospital-card:hover {
+      transform: translateY(-5px) scale(1.01);
+      box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+    }
+    
+    .hospital-image {
+      height: 200px;
+      width: 100%;
+      object-fit: cover;
+    }
+    
+    .hospital-info {
+      padding: 1.5rem;
+    }
+    
+    .hospital-name {
+      font-size: 1.4rem;
+      margin-bottom: 0.5rem;
+      color: var(--primary);
+    }
+    
+    .hospital-location {
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      margin-bottom: 1rem;
+      color: var(--text-light);
+    }
+    
+    .hospital-features {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-bottom: 1rem;
+    }
+    
+    .feature-tag {
+      background: rgba(var(--primary-rgb), 0.08);
+      color: var(--primary);
+      padding: 4px 12px;
+      border-radius: 6px;
+      font-size: 0.75rem;
+    }
+    
+    .hospital-actions {
+      display: flex;
+      gap: 10px;
+    }
+
+    
+    
+    .action-btn {
+      flex: 1;
+      padding: 10px 15px;
+      background: var(--primary);
+      color: white;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: var(--transition);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 5px;
+    }
+    
+    .action-btn:hover {
+      background: var(--primary-dark);
+    }
+    
+    .action-btn.secondary {
+      background: transparent;
+      color: var(--border);
+      border: 1px solid var(--border);
+    }
+    
+    .action-btn.secondary:hover {
+      background: rgba(var(--primary-rgb), 0.08);
+    }
+    
+    /* Enhanced Home Remedies Section */
+    .remedies-section {
+      padding: 5rem 2rem;
+      background: var(--bg-light);
+    }
+    
+    .remedies-intro {
+      text-align: center;
+      max-width: 800px;
+      margin: 0 auto 3rem;
+    }
+    
+    .remedies-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: 2rem;
+      max-width: 1400px;
+      margin: 0 auto;
+    }
+    
+    .remedy-card {
+      background: var(--card-bg);
+      border-radius: 10px;
+      overflow: hidden;
+      box-shadow: var(--shadow);
+      transition: var(--transition);
+    }
+    
+    .remedy-card:hover {
+      transform: translateY(-3px) scale(1.01);
+      box-shadow: 0 6px 15px rgba(0,0,0,0.08);
+    }
+    
+    .remedy-image {
+      height: 180px;
+      width: 100%;
+      object-fit: cover;
+    }
+    
+    .remedy-info {
+      padding: 1.5rem;
+    }
+    
+    .remedy-name {
+      font-size: 1.3rem;
+      margin-bottom: 0.5rem;
+      color: var(--primary);
+    }
+    
+    .remedy-uses {
+      color: var(--text-light);
+      margin-bottom: 1rem;
+      font-size: 0.85rem;
+    }
+    
+    .remedy-preparation {
+      background: var(--bg-light);
+      padding: 0.8rem;
+      border-radius: 8px;
+      font-size: 0.8rem;
+    }
+    
+    body.dark .remedy-preparation {
+      background: var(--bg-dark);
+    }
+    
+    .remedy-preparation h4 {
+      margin-bottom: 0.5rem;
+      color: var(--primary);
+    }
+    
+    /* Enhanced Diseases Section */
+    .diseases-section {
+      padding: 5rem 2rem;
+      background: var(--bg);
+    }
+
+    .diseases-intro {
+      text-align: center;
+      max-width: 800px;
+      margin: 0 auto 3rem;
+    }
+
+    .diseases-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: 2rem;
+      max-width: 1400px;
+      margin: 0 auto;
+    }
+
+    .disease-card {
+      background: var(--card-bg);
+      border-radius: 10px;
+      overflow: hidden;
+      box-shadow: var(--shadow);
+      transition: var(--transition);
+      display: flex;
+      flex-direction: column;
+    }
+
+    .disease-card:hover {
+      transform: translateY(-3px) scale(1.01);
+      box-shadow: 0 6px 15px rgba(0,0,0,0.08);
+    }
+
+    .disease-image {
+      height: 180px;
+      width: 100%;
+      object-fit: cover;
+    }
+
+    .disease-info {
+      padding: 1.5rem;
+      flex-grow: 1;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .disease-name {
+      font-size: 1.3rem;
+      margin-bottom: 0.5rem;
+      color: var(--primary);
+    }
+
+    .disease-symptoms {
+      color: var(--text-light);
+      margin-bottom: 1rem;
+      font-size: 0.85rem;
+      flex-grow: 1;
+    }
+
+    .disease-prevention {
+      background: var(--bg-light);
+      padding: 0.8rem;
+      border-radius: 8px;
+      font-size: 0.8rem;
+    }
+
+    body.dark .disease-prevention {
+      background: var(--bg-dark);
+    }
+
+    .disease-prevention h4 {
+      margin-bottom: 0.5rem;
+      color: var(--primary);
+    }
+
+    .disease-hospitals {
+      margin-top: 1.2rem;
+      background: rgba(var(--primary-rgb), 0.05);
+      padding: 0.8rem;
+      border-radius: 8px;
+    }
+
+    .disease-hospitals h4 {
+      margin-bottom: 0.5rem;
+      color: var(--primary);
+    }
+
+    .disease-hospitals p {
+      font-size: 0.85rem;
+      color: var(--text-light);
+    }
+
+    .disease-before-you-get, .disease-health-tips {
+      margin-top: 1.2rem;
+      background: var(--bg-light);
+      padding: 0.8rem;
+      border-radius: 8px;
+      font-size: 0.85rem;
+    }
+
+    body.dark .disease-before-you-get, body.dark .disease-health-tips {
+      background: var(--bg-dark);
+    }
+
+    .disease-before-you-get h4, .disease-health-tips h4 {
+      margin-bottom: 0.5rem;
+      color: var(--primary);
+    }
+
+    /* Resource Books Section Styles */
+    .books-section {
+      padding: 5rem 2rem;
+      background: var(--bg-light);
+    }
+
+    .books-intro {
+      text-align: center;
+      max-width: 800px;
+      margin: 0 auto 3rem;
+    }
+
+    .books-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 2rem;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .book-card {
+      background: var(--card-bg);
+      border-radius: 10px;
+      padding: 2rem;
+      box-shadow: var(--shadow);
+      transition: var(--transition);
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .book-card:hover {
+      transform: translateY(-3px) scale(1.01);
+      box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+    }
+
+    .book-title {
+      font-size: 1.4rem;
+      color: var(--primary);
+      margin-bottom: 0.8rem;
+    }
+
+    .book-author {
+      font-size: 0.9rem;
+      color: var(--text-light);
+      margin-bottom: 1.5rem;
+      flex-grow: 1;
+    }
+
+    .book-card .btn-secondary {
+      display: inline-block;
+      margin-top: 1rem;
+      padding: 0.8rem 1.8rem;
+      background: var(--secondary);
+      color: white;
+      border: none;
+      border-radius: 8px;
+      text-decoration: none;
+      font-weight: 500;
+      transition: var(--transition);
+    }
+
+    .book-card .btn-secondary:hover {
+      background: var(--primary);
+      transform: translateY(-2px);
+    }
+
+    /* Feedback Section Styles */
+    .feedback-section {
+      padding: 5rem 2rem;
+      background: var(--bg);
+    }
+
+    .feedback-intro {
+      text-align: center;
+      max-width: 800px;
+      margin: 0 auto 3rem;
+    }
+
+    .feedback-container {
+      max-width: 700px;
+      margin: 0 auto;
+      background: var(--card-bg);
+      padding: 3rem;
+      border-radius: 10px;
+      box-shadow: var(--shadow);
+    }
+
+    body.dark .feedback-container {
+      background: var(--bg-light);
+    }
+
+    .feedback-form .form-group {
+      margin-bottom: 1.5rem;
+    }
+
+    .feedback-form label {
+      display: block;
+      font-weight: 600;
+      margin-bottom: 0.8rem;
+      color: var(--primary);
+      font-size: 1rem;
+    }
+
+    .feedback-form input[type="text"],
+    .feedback-form input[type="email"],
+    .feedback-form textarea {
+      width: 100%;
+      padding: 10px 15px;
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      font-family: inherit;
+      font-size: 1rem;
+      color: var(--text);
+      background: var(--input-bg);
+      transition: var(--transition);
+    }
+
+    body.dark .feedback-form input,
+    body.dark .feedback-form textarea {
+      background: var(--bg-dark);
+      border-color: var(--border);
+      color: var(--text);
+    }
+
+    .feedback-form input:focus,
+    .feedback-form textarea:focus {
+      outline: none;
+      border-color: var(--primary);
+      box-shadow: 0 0 0 3px rgba(var(--primary-rgb), 0.15);
+    }
+
+    .feedback-form textarea {
+      resize: vertical;
+      min-height: 100px;
+    }
+
+    .feedback-form .btn {
+      display: block;
+      width: 100%;
+      padding: 12px;
+      background: var(--primary);
+      color: white;
+      border: none;
+      border-radius: 6px;
+      font-size: 1rem;
+      font-weight: 500;
+      cursor: pointer;
+      transition: var(--transition);
+    }
+
+    .feedback-form .btn:hover {
+      background: var(--primary-dark);
+      transform: translateY(-1px);
+      box-shadow: 0 4px 10px rgba(var(--primary-rgb), 0.2);
+    }
+
+    /* Pagination */
+    .pagination {
+      display: flex;
+      justify-content: center;
+      margin-top: 3rem;
+      gap: 10px;
+    }
+    
+    .page-btn {
+      padding: 10px 18px;
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      cursor: pointer;
+      transition: var(--transition);
+    }
+    
+    .page-btn.active {
+      background: var(--primary);
+      color: white;
+      border-color: var(--primary);
+      box-shadow: 0 4px 12px rgba(var(--primary-rgb), 0.2);
+    }
+    
+    .page-btn:hover:not(.active) {
+      background: var(--primary-light);
+      color: white;
+    }
+    
+    body.dark .page-btn:hover:not(.active) {
+      background: var(--primary-dark);
+      color: white;
+    }
+    
+    /* Footer */
+    footer {
+      text-align: center;
+      padding: 3rem 2rem;
+      background: var(--bg-dark);
+      color: var(--text-light);
+    }
+    
+    .footer-content {
+      max-width: 1000px;
+      margin: 0 auto;
+    }
+    
+    .footer-logo {
+      font-size: 2.1rem;
+      margin-bottom: 1rem;
+      color: var(--primary);
+    }
+    
+    .footer-tagline {
+      font-size: 1.1rem;
+      margin-bottom: 2rem;
+      font-style: italic;
+    }
+    
+    .footer-links {
+      display: flex;
+      justify-content: center;
+      gap: 2rem;
+      margin-bottom: 2rem;
+      flex-wrap: wrap;
+    }
+    
+    .footer-links a {
+      color: inherit;
+      text-decoration: none;
+      transition: var(--transition);
+    }
+    
+    .footer-links a:hover {
+      color: var(--primary);
+    }
+    
+    .social-icons {
+      display: flex;
+      justify-content: center;
+      gap: 1.5rem;
+      margin-bottom: 2rem;
+    }
+    
+    .social-icon {
+      font-size: 1.6rem;
+      color: var(--text-light);
+      transition: var(--transition);
+    }
+    
+    .social-icon:hover {
+      color: var(--primary);
+      transform: translateY(-3px);
+    }
+    
+    /* Back to Top Button */
+    .back-to-top {
+      position: fixed;
+      right: 16px;
+      bottom: 16px;
+      z-index: 1000;
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      background: var(--primary);
+      color: #fff;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+      border: none;
+      cursor: pointer;
+      transition: var(--transition);
+    }
+    .back-to-top:hover {
+      transform: translateY(-3px) scale(1.05);
+      box-shadow: 0 10px 24px rgba(0,0,0,0.18);
+    }
+    .back-to-top.show { display: inline-flex; }
+    
+    /* Responsive Design */
+    @media (max-width: 1024px) {
+      .nav-menu {
+        gap: 0;
+      }
+      
+      .nav-link {
+        padding: 8px 12px;
+        font-size: 0.85rem;
+      }
+    }
+    
+    @media (max-width: 900px) {
+      .nav-menu {
+        flex-direction: column;
+        border-radius: 10px;
+        padding: 0;
+        background: transparent;
+        box-shadow: none;
+        gap: 5px;
+      }
+      
+      .nav-link {
+        border-radius: 6px;
+        justify-content: center;
+        padding: 12px;
+      }
+      
+      .logo-text {
+        font-size: 1.5rem;
+      }
+      
+      .hero-content h1 {
+        font-size: 2.2rem;
+      }
+      
+      .hero-content p {
+        font-size: 1rem;
+      }
+      
+      .hospitals-container,
+      .remedies-container {
+        grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      }
+    }
+    
+    @media (max-width: 480px) {
+      header {
+        padding: 1rem;
+      }
+      
+      .logo-text {
+        font-size: 1.3rem;
+      }
+      
+      .hero {
+        padding: 4rem 1rem;
+      }
+      
+      .hero-content h1 {
+        font-size: 1.8rem;
+      }
+      
+      .btn {
+        padding: 0.9rem 1.6rem;
+        font-size: 0.85rem;
+      }
+      
+      .hospitals-container,
+      .remedies-container {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    /* Floating Feedback Button */
+    .feedback-float-btn {
+      position: fixed;
+      bottom: 30px;
+      right: 30px;
+      background: var(--accent);
+      color: white;
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.8rem;
+      box-shadow: 0 8px 25px rgba(255, 107, 107, 0.4);
+      cursor: pointer;
+      transition: var(--transition);
+      z-index: 1000;
+      border: none;
+    }
+
+    .feedback-float-btn:hover {
+      transform: translateY(-5px) scale(1.1);
+      box-shadow: 0 12px 30px rgba(255, 107, 107, 0.6);
+    }
+
+    /* Contact Section Styles */
+    .contact-section {
+      padding: 5rem 2rem;
+      background: var(--bg-light);
+      text-align: center;
+    }
+
+    .contact-intro {
+      font-size: 1.2rem;
+      color: var(--text-light);
+      margin-bottom: 3rem;
+      max-width: 800px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .contact-container {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 2rem;
+      margin-bottom: 3rem;
+    }
+
+    .contact-info-card {
+      background: var(--bg);
+      padding: 2.5rem;
+      border-radius: 15px;
+      box-shadow: var(--shadow);
+      text-align: center;
+      flex: 1;
+      min-width: 280px;
+      max-width: 320px;
+      transition: var(--transition);
+    }
+
+    .contact-info-card:hover {
+      transform: translateY(-8px) scale(1.02);
+      box-shadow: 0 15px 30px rgba(0,0,0,0.15);
+    }
+
+    .contact-icon {
+      font-size: 3rem;
+      color: var(--primary);
+      margin-bottom: 1.5rem;
+    }
+
+    .contact-info-card h3 {
+      font-size: 1.8rem;
+      color: var(--primary-dark);
+      margin-bottom: 1rem;
+    }
+
+    .contact-info-card p {
+      font-size: 1.1rem;
+      color: var(--text);
+      line-height: 1.6;
+    }
+
+    body.dark .contact-info-card {
+      background: #252525;
+    }
+
+    .contact-form-container {
+      max-width: 700px;
+      margin: 0 auto;
+      background: var(--bg);
+      padding: 3rem;
+      border-radius: 15px;
+      box-shadow: var(--shadow);
+      text-align: left;
+    }
+
+    body.dark .contact-form-container {
+      background: #252525;
+    }
+
+    .section-subtitle {
+      font-size: 2rem;
+      color: var(--primary);
+      margin-bottom: 2rem;
+      text-align: center;
+    }
+
+    .contact-form .form-group {
+      margin-bottom: 1.5rem;
+    }
+
+    .contact-form label {
+      display: block;
+      font-weight: 600;
+      margin-bottom: 0.8rem;
+      color: var(--primary);
+      font-size: 1.1rem;
+    }
+
+    .contact-form input[type="text"],
+    .contact-form input[type="email"],
+    .contact-form textarea {
+      width: 100%;
+      padding: 12px;
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      font-family: inherit;
+      font-size: 1rem;
+      color: var(--text);
+      background: var(--bg-light);
+      transition: var(--transition);
+    }
+
+    body.dark .contact-form input,
+    body.dark .contact-form textarea {
+      background: #333;
+      border-color: #555;
+      color: #eee;
+    }
+
+    .contact-form input:focus,
+    .contact-form textarea:focus {
+      outline: none;
+      border-color: var(--primary);
+      box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.2);
+    }
+
+    .contact-form textarea {
+      resize: vertical;
+      min-height: 150px;
+    }
+
+    .contact-form .btn {
+      display: block;
+      width: 100%;
+      padding: 15px;
+      background: var(--primary);
+      color: white;
+      border: none;
+      border-radius: 8px;
+      font-size: 1.1rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: var(--transition);
+    }
+
+    .contact-form .btn:hover {
+      background: var(--primary-dark);
+      transform: translateY(-2px);
+      box-shadow: 0 6px 15px rgba(0, 123, 255, 0.3);
+    }
+
+    .pagination-ellipsis {
+      padding: 8px 5px;
+      color: var(--text-light);
+      font-size: 0.9rem;
+    }
+
+    .page-btn {
+      padding: 10px 18px;
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      cursor: pointer;
+      transition: var(--transition);
+    }
+
+    /* Flashcard specific styles */
+    .flashcard {
+      position: relative;
+      perspective: 1000px;
+      height: 250px; /* Adjust height as needed */
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .flashcard-front, .flashcard-back {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      backface-visibility: hidden;
+      transition: transform 0.6s ease-in-out;
+      border-radius: 10px;
+      box-shadow: var(--shadow);
+      padding: 2.5rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      background: var(--card-bg);
+    }
+
+    body.dark .flashcard-front, body.dark .flashcard-back {
+      background: var(--bg-light);
+    }
+
+    .flashcard-front {
+      transform: rotateY(0deg);
+      z-index: 2;
+    }
+
+    .flashcard-back {
+      transform: rotateY(180deg);
+      background: var(--primary-light); /* Different background for back */
+      color: white;
+      z-index: 1;
+    }
+
+    body.dark .flashcard-back {
+      background: var(--primary-dark);
+    }
+
+    .flashcard:hover .flashcard-front {
+      transform: rotateY(-180deg);
+    }
+
+    .flashcard:hover .flashcard-back {
+      transform: rotateY(0deg);
+    }
+
+    .flashcard-back p, .flashcard-back ul {
+      color: white; /* Ensure text is readable on dark background */
+    }
+
+    .flashcard-back ul li:before {
+      color: var(--secondary); /* Keep checkmark color distinct */
+    }
+  </style>
+</head>
+<body>
+  <!-- Enhanced Header -->
+  <header>
+    <div class="logo">
+      <i class="fas fa-heartbeat logo-icon"></i>
+      <span class="logo-text">S&S Health Care</span>
+    </div>
+    
+    <button class="nav-toggle" aria-label="Toggle navigation" aria-expanded="false">
+      <i class="fas fa-bars"></i>
+    </button>
+
+    <nav>
+      <ul class="nav-menu">
+        <li class="nav-item">
+          <a href="#" class="nav-link active">
+            <i class="fas fa-home"></i>
+            <span>Home</span>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a href="#about" class="nav-link">
+            <i class="fas fa-info-circle"></i>
+            <span>About</span>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a href="#hospitals" class="nav-link">
+            <i class="fas fa-hospital"></i>
+            <span>Hospitals</span>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a href="#remedies" class="nav-link">
+            <i class="fas fa-leaf"></i>
+            <span>Remedies</span>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a href="#books" class="nav-link">
+            <i class="fas fa-book-medical"></i>
+            <span>Resources</span>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a href="#diseases" class="nav-link">
+            <i class="fas fa-viruses"></i>
+            <span>Diseases</span>
+          </a>
+        </li>
+      </ul>
+    </nav>
+    
+    <div class="header-buttons">
+      <a href="login.html" class="login-btn">
+        <i class="fas fa-user"></i>
+        <span>Login</span>
+      </a>
+      <button class="theme-toggle" onclick="toggleTheme()">☀️</button>
+    </div>
+  </header>
+
+  <!-- 3D Hero Section -->
+  <section class="hero-3d">
+    <div class="hero-content">
+      <h1>Quality Medical Care at the Comfort of Your Home</h1>
+      <p>Clear, true health information and compassionate care, anytime, anywhere. Pioneered from Ethiopia, delivered to the world. We are building a new model of global wellness, rooted in expertise and innovation, for a healthier future for all.</p>
+      <div class="hero-buttons">
+        <a href="#" class="btn"><i class="fas fa-home"></i> Book Home Visit</a>
+        <a href="#" class="btn btn-secondary"><i class="fas fa-laptop-medical"></i> Consult Online</a>
+      </div>
+    </div>
+  </section>
+
+  
+
+  <!-- Welcome Section -->
+  <section class="welcome section-hidden" id="welcome">
+    <div class="floating-elements">
+      <div class="floating-element" style="top: 10%; left: 5%;"><i class="fas fa-heartbeat"></i></div>
+      <div class="floating-element" style="top: 20%; right: 10%;"><i class="fas fa-stethoscope"></i></div>
+      <div class="floating-element" style="bottom: 30%; left: 15%;"><i class="fas fa-pills"></i></div>
+      <div class="floating-element" style="bottom: 10%; right: 5%;"><i class="fas fa-ambulance"></i></div>
+    </div>
+    <div class="welcome-content">
+      <i class="fas fa-hand-holding-heart welcome-icon"></i>
+      <h2>💙 Welcome to S and S Life Easy Health Care</h2>
+      <p class="welcome-tagline">Your health, made simple.</p>
+      <p class="welcome-text">At S and S, we help you understand your condition and find the right medicine — fast. No stress, no confusion. Just clarity, care, and solutions.</p>
+      <p class="welcome-text"><strong>Learn. Heal. Live better.</strong></p>
+      
+      <div class="welcome-highlights">
+        <div class="highlight">
+          <i class="fas fa-brain highlight-icon"></i>
+          <h3>Learn</h3>
+          <p>Understand your health conditions with clear explanations</p>
+        </div>
+        <div class="highlight">
+          <i class="fas fa-heartbeat highlight-icon"></i>
+          <h3>Heal</h3>
+          <p>Get the right treatment with our expert medical guidance</p>
+        </div>
+        <div class="highlight">
+          <i class="fas fa-home highlight-icon"></i>
+          <h3>Live Better</h3>
+          <p>Improve your quality of life with personalized care plans</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- About Us Section -->
+  <section id="about" class="about-section section-hidden">
+    <div class="about-content">
+      <h2 class="section-title">About S&S Life Easy Health Care</h2>
+      <p class="about-intro">Our commitment is to bring quality, accessible, and compassionate healthcare to every household in Ethiopia.</p>
+      
+      <div class="about-grid">
+        <div class="about-card flashcard">
+          <div class="flashcard-front">
+            <i class="fas fa-lightbulb about-icon"></i>
+            <h3>Our Mission</h3>
+          </div>
+          <div class="flashcard-back">
+            <p>To provide innovative and easy-to-access medical services, empowering individuals to take control of their health with clarity and confidence.</p>
+          </div>
+        </div>
+        <div class="about-card flashcard">
+          <div class="flashcard-front">
+            <i class="fas fa-eye about-icon"></i>
+            <h3>Our Vision</h3>
+          </div>
+          <div class="flashcard-back">
+            <p>To be the leading platform for home-based and online healthcare in Ethiopia, recognized for our excellence in care and patient empowerment.</p>
+          </div>
+        </div>
+        <div class="about-card flashcard">
+          <div class="flashcard-front">
+            <i class="fas fa-hands-helping about-icon"></i>
+            <h3>Our Values</h3>
+          </div>
+          <div class="flashcard-back">
+            <ul>
+              
+              <li><strong>Integrity:</strong> We uphold the highest ethical standards in all our practices.</li>
+              <li><strong>Innovation:</strong> We embrace technology to deliver convenient and effective care.</li>
+              <li><strong>Accessibility:</strong> We strive to make quality healthcare available to everyone.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Hospitals Section -->
+  <section id="hospitals" class="hospitals-section section-hidden">
+    <h2 class="section-title">Hospitals in Ethiopia</h2>
+    <div class="search-bar">
+      <i class="fas fa-search search-icon"></i>
+      <input type="text" id="hospital-search" placeholder="Search hospitals by name, location, or features...">
+    </div>
+    <div class="hospitals-container" id="hospitals-container">
+      <!-- Hospitals will be loaded here by JavaScript -->
+    </div>
+    <div class="pagination" id="hospitals-pagination">
+      <!-- Pagination will be generated by JavaScript -->
+    </div>
+  </section>
+
+  <!-- Home Remedies Section -->
+  <section id="remedies" class="remedies-section section-hidden">
+    <h2 class="section-title">Ethiopian Home Remedies</h2>
+    <div class="search-bar">
+      <i class="fas fa-search search-icon"></i>
+      <input type="text" id="remedy-search" placeholder="Search remedies by name, uses, or preparation...">
+    </div>
+    <div class="remedies-intro">
+      <p>Discover traditional Ethiopian remedies that have been used for generations to treat common ailments. These natural treatments are part of Ethiopia's rich cultural heritage.</p>
+    </div>
+    <div class="remedies-container" id="remedies-container">
+      <!-- Remedies will be loaded here by JavaScript -->
+    </div>
+    <div class="pagination" id="remedies-pagination">
+      <!-- Pagination will be generated by JavaScript -->
+    </div>
+  </section>
+
+  <!-- Diseases Section -->
+  <section id="diseases" class="diseases-section section-hidden">
+    <h2 class="section-title">Common Diseases</h2>
+    <div class="search-bar">
+      <i class="fas fa-search search-icon"></i>
+      <input type="text" id="disease-search" placeholder="Search diseases by name, symptoms, or prevention...">
+    </div>
+    <div class="diseases-intro">
+      <p>Explore common diseases, their symptoms, prevention methods, and recommended hospitals in Ethiopia. Knowledge is your first line of defense.</p>
+    </div>
+    <div class="diseases-container" id="diseases-container">
+      <!-- Diseases will be loaded here by JavaScript -->
+    </div>
+    <div class="pagination" id="diseases-pagination">
+      <!-- Pagination will be generated by JavaScript -->
+    </div>
+  </section>
+
+  <!-- Resource Books Section -->
+  <section id="books" class="books-section section-hidden">
+    <h2 class="section-title">Resource Books</h2>
+    <div class="books-intro">
+      <p>Find valuable medical resource books to deepen your understanding of various health topics. These books are curated to provide comprehensive and reliable information.</p>
+    </div>
+    <div class="search-bar">
+      <i class="fas fa-search search-icon"></i>
+      <input type="text" id="book-search" placeholder="Search books by title or author...">
+    </div>
+    <div class="books-container" id="books-container">
+      <!-- Books will be loaded here by JavaScript -->
+    </div>
+    <div class="pagination" id="books-pagination">
+      <!-- Pagination will be generated by JavaScript -->
+    </div>
+  </section>
+
+  <!-- Contact Section -->
+  <section id="contact" class="contact-section section-hidden">
+    <h2 class="section-title">Get in Touch</h2>
+    <div class="contact-intro">
+      <p>We're here to help! Reach out to us for any inquiries, support, or appointments.</p>
+    </div>
+    <div class="contact-container">
+      <div class="contact-info-card">
+        <i class="fas fa-phone-alt contact-icon"></i>
+        <h3>Call Us</h3>
+        <p>+251 904620482</p>
+        <p>Available 24/7 for emergencies</p>
+      </div>
+      <div class="contact-info-card">
+        <i class="fas fa-envelope contact-icon"></i>
+        <h3>Email Us</h3>
+        <p>sandshealthcaresystem@gmail.com</p>
+        <p>We usually respond within 24 hours</p>
+      </div>
+      <div class="contact-info-card">
+        <i class="fas fa-map-marker-alt contact-icon"></i>
+        <h3>Our Location</h3>
+        <p>Bahir Dar, Ethiopia</p>
+        <p>Visit us during office hours</p>
+      </div>
+    </div>
+    <div class="contact-form-container">
+      <h3 class="section-subtitle">✉️ Send Us a Message</h3>
+      <form class="contact-form">
+        <div class="form-group">
+          <label for="contact-name">Your Name:</label>
+          <input type="text" id="contact-name" name="name" placeholder="Enter your name" required>
+        </div>
+        <div class="form-group">
+          <label for="contact-email">Your Email:</label>
+          <input type="email" id="contact-email" name="email" placeholder="Enter your email" required>
+        </div>
+        <div class="form-group">
+          <label for="contact-subject">Subject:</label>
+          <input type="text" id="contact-subject" name="subject" placeholder="Subject of your message" required>
+        </div>
+        <div class="form-group">
+          <label for="contact-message">Your Message:</label>
+          <textarea id="contact-message" name="message" rows="6" placeholder="Type your message here..." required></textarea>
+        </div>
+        <button type="submit" class="btn">Send Message</button>
+      </form>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <div class="footer-content">
+      <div class="footer-logo">
+        <i class="fas fa-heartbeat"></i> S&S Life Easy Health Care
+      </div>
+      <p class="footer-tagline">Your health, made simple. Learn. Heal. Live better.</p>
+      
+      <div class="footer-links">
+        <a href="#about">About Us</a>
+        <a href="#hospitals">Hospitals</a>
+        <a href="#remedies">Remedies</a>
+        <a href="#contact">Contact</a>
+        <a href="#">Privacy Policy</a>
+      </div>
+      
+      <div class="social-icons">
+        <a href="#" class="social-icon"><i class="fab fa-facebook"></i></a>
+        <a href="#" class="social-icon"><i class="fab fa-twitter"></i></a>
+        <a href="#" class="social-icon"><i class="fab fa-instagram"></i></a>
+        <a href="#" class="social-icon"><i class="fab fa-linkedin"></i></a>
+      </div>
+      
+      <p>&copy; 2025 S&S Life Easy Health Care | All Rights Reserved</p>
+      <p>Bringing Quality Healthcare to Your Doorstep Across Ethiopia</p>
+    </div>
+  </footer>
+
+  <button class="feedback-float-btn" onclick="scrollToFeedback()" title="Leave Feedback">
+    <i class="fas fa-comment"></i>
+  </button>
+
+  <!-- Back to Top Button -->
+  <button class="back-to-top" aria-label="Back to top" title="Back to top">
+    <i class="fas fa-chevron-up"></i>
+  </button>
+
+  <script>
+    // Theme Toggle Function
+    function toggleTheme() {
+      document.body.classList.toggle("dark");
+      const themeButton = document.querySelector('.theme-toggle');
+      if (document.body.classList.contains("dark")) {
+        themeButton.textContent = "🌙";
+        themeButton.title = "Switch to light mode";
+      } else {
+        themeButton.textContent = "☀️";
+        themeButton.title = "Switch to light mode";
+      }
+      
+      // Save theme preference
+      localStorage.setItem('theme', document.body.classList.contains('dark') ? 'dark' : 'light');
+    }
+    
+    // Check for saved theme preference
+    if (localStorage.getItem('theme') === 'dark') {
+      document.body.classList.add('dark');
+      document.querySelector('.theme-toggle').textContent = "🌙";
+    }
+
+    // Mobile navigation toggle
+    const navToggleButton = document.querySelector('.nav-toggle');
+    const navMenu = document.querySelector('.nav-menu');
+    if (navToggleButton && navMenu) {
+      navToggleButton.addEventListener('click', function() {
+        const isOpen = navMenu.classList.toggle('open');
+        this.setAttribute('aria-expanded', String(isOpen));
+      });
+      // Close menu when any link is clicked (mobile UX)
+      navMenu.addEventListener('click', function(event) {
+        const clickedLink = event.target.closest('.nav-link');
+        if (clickedLink && navMenu.classList.contains('open')) {
+          navMenu.classList.remove('open');
+          navToggleButton.setAttribute('aria-expanded', 'false');
+        }
+      });
+    }
+
+    // Back to Top functionality
+    (function() {
+      const backToTopBtn = document.querySelector('.back-to-top');
+      if (!backToTopBtn) return;
+      function toggleBackToTop() {
+        if (window.scrollY > 300) {
+          backToTopBtn.classList.add('show');
+        } else {
+          backToTopBtn.classList.remove('show');
+        }
+      }
+      window.addEventListener('scroll', toggleBackToTop);
+      toggleBackToTop();
+      backToTopBtn.addEventListener('click', function() {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      });
+    })();
+
+    // Hospital Data
+    const hospitals = [
+      {
+        name: "Black Lion Specialized Hospital",
+        location: "Addis Ababa",
+        image: "https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80",
+        features: ["Emergency", "Surgery", "Maternity", "Pediatrics"],
+        rating: 4.5,
+        distance: "2.3 km"
+      },
+      {
+        name: "St. Paul's Hospital Millennium Medical College",
+        location: "Addis Ababa",
+        image: "https://images.unsplash.com/photo-1586773860418-d37222d8fce3?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80",
+        features: ["Teaching Hospital", "Research", "Specialized Care"],
+        rating: 4.7,
+        distance: "5.1 km"
+      },
+      {
+        name: "Tikur Anbessa Specialized Hospital",
+        location: "Addis Ababa",
+        image: "https://images.unsplash.com/photo-1532938911079-1b06ac7ceec7?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80",
+        features: ["Cancer Treatment", "Cardiology", "Neurology"],
+        rating: 4.6,
+        distance: "3.8 km"
+      },
+      {
+        name: "Myungsung Christian Medical Center",
+        location: "Addis Ababa",
+        image: "https://images.unsplash.com/photo-1551601651-2a8555f1a136?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80",
+        features: ["International Standards", "Korean-Ethiopian Partnership"],
+        rating: 4.8,
+        distance: "7.2 km"
+      },
+      {
+        name: "ALERT Hospital",
+        location: "Addis Ababa",
+        image: "https://images.unsplash.com/photo-1584467735871-8db9ac8e5e3a?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80",
+        features: ["Leprosy Treatment", "Dermatology", "Research"],
+        rating: 4.4,
+        distance: "6.5 km"
+      },
+      {
+        name: "Yekatit 12 Hospital",
+        location: "Addis Ababa",
+        image: "https://images.unsplash.com/photo-1516549655169-df83a0774514?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80",
+        features: ["General Medicine", "Surgery", "Emergency Care"],
+        rating: 4.3,
+        distance: "4.2 km"
+      },
+      {
+        name: "Zewditu Memorial Hospital",
+        location: "Addis Ababa",
+        image: "https://images.unsplash.com/photo-1586773860418-d37222d8fce3?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80",
+        features: ["Maternity", "Pediatrics", "General Medicine"],
+        rating: 4.2,
+        distance: "3.1 km"
+      },
+      {
+        name: "Menelik II Hospital",
+        location: "Addis Ababa",
+        image: "https://images.unsplash.com/photo-1516549655169-df83a0774514?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80",
+        features: ["Teaching Hospital", "Various Specialties"],
+        rating: 4.0,
+        distance: "5.7 km"
+      },
+      {
+        name: "Gandhi Memorial Hospital",
+        location: "Addis Ababa",
+        image: "https://images.unsplash.com/photo-1586773860418-d37222d8fce3?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80",
+        features: ["Maternity", "Gynecology"],
+        rating: 4.1,
+        distance: "4.0 km"
+      },
+      {
+        name: "Federal Police Hospital",
+        location: "Addis Ababa",
+        image: "https://images.unsplash.com/photo-1516549655169-df83a0774514?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80",
+        features: ["Emergency", "General Surgery"],
+        rating: 3.9,
+        distance: "6.3 km"
+      },
+      {
+        name: "Landmark General Hospital",
+        location: "Addis Ababa",
+        image: "https://images.unsplash.com/photo-1551601651-2a8555f1a136?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80",
+        features: ["Specialized Clinics", "Diagnostics"],
+        rating: 4.5,
+        distance: "8.5 km"
+      },
+      {
+        name: "Addis Hiwot Hospital",
+        location: "Addis Ababa",
+        image: "https://images.unsplash.com/photo-1532938911079-1b06ac7ceec7?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80",
+        features: ["Pediatrics", "Internal Medicine"],
+        rating: 4.3,
+        distance: "7.0 km"
+      },
+      
+    ];
+
+    // Add hospitals in Bahir Dar
+    hospitals.push(
+      {
+        name: "Felege Hiwot Referral Hospital",
+        location: "Bahir Dar",
+        image: "https://images.unsplash.com/photo-1584467735871-8db9ac8e5e3a?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80",
+        features: ["Referral", "Emergency", "General Surgery", "Pediatrics"],
+        rating: 4.6,
+        distance: "Location specific"
+      },
+      {
+        name: "Gamby Teaching Hospital",
+        location: "Bahir Dar",
+        image: "https://images.unsplash.com/photo-1516549655169-df83a0774514?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80",
+        features: ["Teaching Hospital", "Specialized Clinics", "Diagnostics"],
+        rating: 4.5,
+        distance: "Location specific"
+      },
+      {
+        name: "Shir Zaf Hospital",
+        location: "Bahir Dar",
+        image: "https://images.unsplash.com/photo-1551601651-2a8555f1a136?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80",
+        features: ["General Medicine", "Maternity"],
+        rating: 4.0,
+        distance: "Location specific"
+      }
+    );
+
+    // Generate more hospitals to reach a long list for demonstration
+    for (let i = hospitals.length; i < 50; i++) {
+      const cities = ["Addis Ababa", "Bahir Dar", "Adama", "Hawassa", "Gondar", "Mekelle"];
+      const hospitalTypes = ["General Hospital", "Specialized Clinic", "Maternity Hospital", "Children's Hospital", "Referral Hospital"];
+      const randomCity = cities[Math.floor(Math.random() * cities.length)];
+      const randomType = hospitalTypes[Math.floor(Math.random() * hospitalTypes.length)];
+      
+      hospitals.push({
+        name: `Hospital ${i + 1} ${randomType}`,
+        location: randomCity,
+        image: `https://images.unsplash.com/photo-1${700000000 + i}?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80`,
+        features: [randomType, "Emergency", "Diagnostics"],
+        rating: (Math.random() * 1 + 3.5).toFixed(1),
+        distance: `${(Math.random() * 10 + 1).toFixed(1)} km`
+      });
+    }
+
+    // Declare filteredHospitals globally and initialize it with all hospitals
+    let filteredHospitals = [...hospitals];
+
+    // Home Remedies Data (1000+ remedies sample)
+    const remedies = [
+      {
+        name: "Tena Adam (Rue)",
+        image: "https://media.istockphoto.com/id/966233824/photo/common-rue.webp?a=1&b=1&s=612x612&w=0&k=20&c=9Sf3-jiUFR10by4ODJZXUqhCdiU_lhKEzX9AkwFqXWU=",
+        uses: "Headache, stomach pain, colds",
+        preparation: "Crush leaves and inhale aroma or brew as tea"
+      },
+      {
+        name: "Gesho (Rhamnus prinoides)",
+        image: "https://images.unsplash.com/photo-1683525869484-4575d47a5f37?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8OHx8UmhhbW51cyUyMHByaW5vaWRlcyhwbGFudCl8ZW58MHx8MHx8fDA%3D",
+        uses: "Digestive issues, appetite stimulant",
+        preparation: "Brew leaves as tea or chew fresh leaves"
+      },
+      {
+        name: "Kosso (Hagenia abyssinica)",
+        image: "https://images.unsplash.com/photo-1755638256574-72f75823306e?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8SGFnZW5pYSUyMGFieXNzaW5pY2EocGxhbnQpfGVufDB8fDB8fHww",
+        uses: "Intestinal parasites",
+        preparation: "Prepare as tea (use with caution)"
+      },
+      {
+        name: "Tinjute (Otostegia integrifolia)",
+        image: "https://images.unsplash.com/photo-1602574759761-d0d9b471495a?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTJ8fE90b3N0ZWdpYSUyMGludGVncmlmb2xpYShwbGFudCl8ZW58MHx8MHx8fDA%3D",
+        uses: "Common cold, respiratory issues",
+        preparation: "Inhale steam from boiled leaves or drink as tea"
+      },
+      {
+        name: "Bisana (Croton macrostachyus)",
+        image: "https://media.istockphoto.com/id/1067802426/photo/fruits-of-a-broad-leaved-croton-tree.webp?a=1&b=1&s=612x612&w=0&k=20&c=by1NTeJlEoiHczIqKfWRFksy5Xlw-GaI7f314u6hx04=",
+        uses: "Malaria, fever, wound healing",
+        preparation: "Apply leaf paste on wounds or brew as tea for fever"
+      },
+      {
+        name: "Endod (Phytolacca dodecandra)",
+        image: "https://images.unsplash.com/photo-1750182315615-fc30eb55d0e3?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8N3x8UGh5dG9sYWNjYSUyMGRvZGVjYW5kcmEocGxhbnQpfGVufDB8fDB8fHww",
+        uses: "Skin conditions, parasitic infections",
+        preparation: "Crush berries and apply topically or use as wash"
+      },
+      {
+        name: "Grawa (Vernonia amygdalina)",
+        image: "https://media.istockphoto.com/id/612859932/photo/vernonia-amygdalina.webp?a=1&b=1&s=612x612&w=0&k=20&c=Uc5JMO1jTW-5Wh17QTKVdz4WIwJw2fET5XCNDsIRX-E=",
+        uses: "Stomach issues, diabetes, malaria",
+        preparation: "Chew bitter leaves or brew as tea"
+      },
+      {
+        name: "Abish (Fenugreek)",
+        image: "https://media.istockphoto.com/id/1166584489/photo/organic-fenugreek-seeds-powder-trigonella-foenum-graecum.webp?a=1&b=1&s=612x612&w=0&k=20&c=a21H08g3lQ7GGFaPk4o_NiFdbuJAvCB6NqnRXwqnfqY=",
+        uses: "Digestion, lactation, blood sugar",
+        preparation: "Soak seeds overnight and drink water or add to food"
+      },
+      {
+        name: "Nech Azmud (Cumin)",
+        image: "https://media.istockphoto.com/id/184293759/photo/caraway-seed-isolated-on-white.webp?a=1&b=1&s=612x612&w=0&k=20&c=Sxw5OYNKlBVHpjGQMnpy2XNsV2XzBb1VWpQnXMGhrjU=",
+        uses: "Digestive issues, colds, immunity",
+        preparation: "Add to food or brew as tea"
+      },
+      {
+        name: "Korerima (Black Cardamom)",
+        image: "https://media.istockphoto.com/id/626516862/photo/amomum-pods-in-the-wooden-spoon.webp?a=1&b=1&s=612x612&w=0&k=20&c=UY6Qa-N8wsuOhpWWv0LyQrPW3-gNJHP1NwPqFZkyftQ=",
+        uses: "Digestive issues, respiratory problems",
+        preparation: "Chew pods or add to food"
+      },
+      {
+        name: "Tikur Azmud (Nigella Sativa)",
+        image: "https://images.unsplash.com/photo-1608797179015-0f64ad48744b?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8TmlnZWxsYSUyMFNhdGl2YXxlbnwwfHwwfHx8MA%3D%3D",
+        uses: "Immune booster, respiratory issues",
+        preparation: "Consume seeds raw or add to food"
+      },
+      {
+        name: "Zingibil (Ginger)",
+        image: "https://media.istockphoto.com/id/647402644/photo/ginger-root-and-ginger-powder-in-the-bowl.webp?a=1&b=1&s=612x612&w=0&k=20&c=E4tpkRaMoT35IOCKgck8jyVhtlQ9unUtq28mZno2nD4=",
+        uses: "Nausea, colds, inflammation",
+        preparation: "Brew as tea or add to food"
+      }
+    ];
+
+    // Disease Data
+    const diseases = [
+      {
+        name: "Malaria",
+        image: "https://plus.unsplash.com/premium_photo-1723107368358-1cf57017d5a4?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MXx8TWFsYXJpYXxlbnwwfHwwfHx8MA%3D%3D",
+        symptoms: "Fever, chills, headache, muscle pain",
+        prevention: "Use mosquito nets, repellents, antimalarial drugs",
+        recommendedHospitals: ["Black Lion Specialized Hospital", "St. Paul's Hospital Millennium Medical College"],
+        beforeYouGet: "Stay in clean environments, use protective clothing.",
+        healthTips: "Ensure proper hygiene, drink clean water."
+      },
+      {
+        name: "Tuberculosis (TB)",
+        image: "https://images.unsplash.com/photo-1706643568151-eaf33acf783e?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Nnx8VHViZXJjdWxvc2lzJTIwKFRCKXxlbnwwfHwwfHx8MA%3D%3D",
+        symptoms: "Persistent cough, chest pain, weight loss, fever",
+        prevention: "BCG vaccine, avoid close contact with infected individuals",
+        recommendedHospitals: ["Tikur Anbessa Specialized Hospital", "ALERT Hospital"],
+        beforeYouGet: "Maintain good ventilation in living spaces, strengthen immune system.",
+        healthTips: "Balanced diet, regular exercise, adequate sleep."
+      },
+      {
+        name: "HIV/AIDS",
+        image: "https://images.unsplash.com/photo-1706639449579-b28503bf026d?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8OHx8aGl2JTIwYWlkc3xlbnwwfHwwfHx8MA%3D%3D",
+        symptoms: "Flu-like illness, swollen glands, weight loss, opportunistic infections",
+        prevention: "Safe sex practices, avoid sharing needles, ART for prevention",
+        recommendedHospitals: ["St. Paul's Hospital Millennium Medical College", "ALERT Hospital"],
+        beforeYouGet: "Get tested regularly, understand transmission risks.",
+        healthTips: "Practice safe sexual behaviors, avoid substance abuse."
+      },
+      {
+        name: "Typhoid Fever",
+        image: "https://media.istockphoto.com/id/1705144602/photo/microscopic-view-of-salmonella-enterica-serotype-typhi-that-causes-typhoid-fever.webp?a=1&b=1&s=612x612&w=0&k=20&c=TopxiQBKUwWqdbr9UnD9KMUq0dPhZBUOWZDdA7uE_i4=",
+        symptoms: "High fever, weakness, stomach pain, headache",
+        prevention: "Drink safe water, wash hands, cook food thoroughly",
+        recommendedHospitals: ["Black Lion Specialized Hospital", "Yekatit 12 Hospital"],
+        beforeYouGet: "Consume only cooked food and boiled water.",
+        healthTips: "Frequent hand washing, especially before meals."
+      },
+      {
+        name: "Cholera",
+        image: "https://images.unsplash.com/photo-1706643568638-1dd5b5899719?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8Q2hvbGVyYXxlbnwwfHwwfHx8MA%3D%3D",
+        symptoms: "Severe watery diarrhea, vomiting, dehydration",
+        prevention: "Drink and use safe water, wash hands, cook food well",
+        recommendedHospitals: ["Zewditu Memorial Hospital", "Menelik II Hospital"],
+        beforeYouGet: "Avoid raw foods, use purified water for drinking and cooking.",
+        healthTips: "Stay hydrated, use oral rehydration salts if necessary."
+      },
+      {
+        name: "Diarrheal Diseases",
+        image: "https://media.istockphoto.com/id/1458918428/photo/man-sitting-on-toilet.webp?a=1&b=1&s=612x612&w=0&k=20&c=cZnc6wyhmCCi-Dhkt3Zu8y38DlFD5vwnj5KuuN0iuNc=",
+        symptoms: "Frequent loose stools, abdominal pain, nausea",
+        prevention: "Hygiene, safe water, proper sanitation, vaccination",
+        recommendedHospitals: ["Black Lion Specialized Hospital", "Zewditu Memorial Hospital"],
+        beforeYouGet: "Ensure food is cooked thoroughly, practice good sanitation.",
+        healthTips: "Drink plenty of fluids, avoid contaminated food."
+      },
+      {
+        name: "Pneumonia",
+        image: "https://images.unsplash.com/photo-1743767587847-08c42b31cdec?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTJ8fFBuZXVtb25pfGVufDB8fDB8fHww",
+        symptoms: "Cough with phlegm, fever, difficulty breathing, chest pain",
+        prevention: "Vaccination, handwashing, avoiding smoke, good nutrition",
+        recommendedHospitals: ["St. Paul's Hospital Millennium Medical College", "Yekatit 12 Hospital"],
+        beforeYouGet: "Avoid exposure to sick individuals, maintain a healthy lifestyle.",
+        healthTips: "Get vaccinated, avoid smoking, manage chronic conditions."
+      },
+      {
+        name: "Measles",
+        image: "https://plus.unsplash.com/premium_photo-1706429468525-2ac4a7e177f5?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MXx8TWVhc2xlc3xlbnwwfHwwfHx8MA%3D%3D",
+        symptoms: "Rash, fever, cough, runny nose, red eyes",
+        prevention: "MMR vaccine",
+        recommendedHospitals: ["Menelik II Hospital", "Tikur Anbessa Specialized Hospital"],
+        beforeYouGet: "Ensure all vaccinations are up to date.",
+        healthTips: "Maintain good personal hygiene, avoid crowded places during outbreaks."
+      },
+      {
+        name: "Meningitis",
+        image: "https://media.istockphoto.com/id/1126707579/photo/brain-diseases-problem-cause-chronic-severe-headache-migraine-male-adult-look-tired-and.webp?a=1&b=1&s=612x612&w=0&k=20&c=Xwf-Owk2KVflOd4qGMyN6767w7LJagosZeosRze0JiY=",
+        symptoms: "Stiff neck, fever, headache, confusion, vomiting",
+        prevention: "Vaccination, avoiding close contact with infected individuals",
+        recommendedHospitals: ["Black Lion Specialized Hospital", "Myungsung Christian Medical Center"],
+        beforeYouGet: "Get vaccinated, avoid close contact with infected people.",
+        healthTips: "Do not share eating utensils, practice good respiratory hygiene."
+      },
+      {
+        name: "Dengue Fever",
+        image: "https://plus.unsplash.com/premium_photo-1723107368162-58b152cb1f32?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MXx8RGVuZ3VlJTIwRmV2ZXJ8ZW58MHx8MHx8fDA%3D",
+        symptoms: "High fever, severe headache, joint and muscle pain, rash",
+        prevention: "Eliminate mosquito breeding sites, use repellents",
+        recommendedHospitals: ["St. Paul's Hospital Millennium Medical College", "ALERT Hospital"],
+        beforeYouGet: "Use mosquito nets, wear long-sleeved clothing.",
+        healthTips: "Empty standing water, use insect repellent."
+      }
+    ];
+
+    // Generate more remedies to reach 1000+
+    for (let i = remedies.length; i < 1000; i++) {
+      const plantNames = ["Ariti", "Bisana", "Wogert", "Girar", "Wanza", "Kulkual", "Dedeho", "Lomi", "Enkoy", "Seraw"];
+      const ailments = ["headache", "stomach pain", "fever", "cough", "skin rash", "malaria", "arthritis", "indigestion", "cold", "wound"];
+      
+      remedies.push({
+        name: `${plantNames[i % plantNames.length]} ${i+1}`,
+        image: `https://images.unsplash.com/photo-${1546069901 + i}-ba9599a7e63c?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80`,
+        uses: `${ailments[i % ailments.length]}, ${ailments[(i+1) % ailments.length]}`,
+        preparation: "Traditional preparation methods vary by region and condition"
+      });
+    }
+
+    // Generate more diseases to reach 1000+
+for (let i = diseases.length; i < 1000; i++) {
+  const diseaseNames = [
+    "Flu",
+    "Common Cold",
+    "Bronchitis",
+    "Asthma",
+    "Diabetes",
+    "Hypertension",
+    "Arthritis",
+    "Migraine",
+    "Anemia",
+    "Gout"
+  ];
+
+  const diseaseSymptoms = [
+    "fever, cough",
+    "runny nose, sore throat",
+    "cough, shortness of breath",
+    "wheezing, chest tightness",
+    "frequent urination, thirst",
+    "high blood pressure",
+    "joint pain, stiffness",
+    "severe headache",
+    "fatigue, weakness",
+    "joint inflammation"
+  ];
+
+  const diseasePrevention = [
+    "vaccination, handwashing",
+    "rest, fluids",
+    "avoid irritants",
+    "inhalers, avoid triggers",
+    "diet, exercise, medication",
+    "healthy lifestyle, medication",
+    "medication, exercise",
+    "avoid triggers, medication",
+    "iron supplements",
+    "dietary changes, medication"
+  ];
+
+  const diseaseImages = [
+    "https://images.unsplash.com/photo-1626697556342-2310dbc55428?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8N3x8Rmx1fGVufDB8fDB8fHww",             // Flu
+    "https://media.istockphoto.com/id/2172812906/photo/a-young-woman-lying-on-the-sofa-in-the-living-room-feeling-sick.webp?a=1&b=1&s=612x612&w=0&k=20&c=WoXeppHNolqfhluo8hvX0pNxV0Uhftxg_Lhq1vlOjL0=",                      // Common Cold
+    "https://plus.unsplash.com/premium_photo-1665201627357-3dc1e188976a?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTd8fEJyb25jaGl0aXN8ZW58MHx8MHx8fDA%3D",          // Bronchitis
+    "https://images.unsplash.com/photo-1733751682743-8f46e457149e?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8QXN0aG1hfGVufDB8fDB8fHww",              // Asthma
+    "https://images.unsplash.com/photo-1685485276219-cbdf9309be1a?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NHx8RGlhYmV0ZXN8ZW58MHx8MHx8fDA%3D",       // Diabetes
+    "https://plus.unsplash.com/premium_photo-1673958771843-12c73b278bd0?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MXx8SHlwZXJ0ZW5zaW9ufGVufDB8fDB8fHww",      // Hypertension
+    "https://plus.unsplash.com/premium_photo-1664478293088-72dec50e8d4c?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NXx8QXJ0aHJpdGlzfGVufDB8fDB8fHww",             // Arthritis
+    "https://images.unsplash.com/photo-1714646183974-099d000b6a84?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8OHx8bWlncmFpbmV8ZW58MHx8MHx8fDA%3D",            // Migraine
+    "https://images.unsplash.com/photo-1716833322855-e10d5ee0022e?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8N3x8QW5lbWlhfGVufDB8fDB8fHww",      // Anemia
+    "https://media.istockphoto.com/id/1335850714/photo/the-feet-of-a-man-suffering-from-gout.webp?a=1&b=1&s=612x612&w=0&k=20&c=bqk6MP-BBhXOIM2oBL8BBUjH3BIfp54W79DvaLJWhY8="                 // Gout
+  ];
+
+  diseases.push({
+    name: `${diseaseNames[i % diseaseNames.length]} ${i + 1}`,
+    image: diseaseImages[i % diseaseImages.length],
+    symptoms: diseaseSymptoms[i % diseaseSymptoms.length],
+    prevention: diseasePrevention[i % diseasePrevention.length],
+    recommendedHospitals: [
+      "Black Lion Specialized Hospital",
+      "St. Paul's Hospital Millennium Medical College"
+    ]
+  });
+}
+
+ 
+    // Books Data
+    const books = [
+      {
+        title: "Principles of Internal Medicine",
+        author: "Harrison's",
+        link: "https://accessmedicine.mhmedical.com/book.aspx?bookID=3095"
+      },
+      {
+        title: "Robbins Basic Pathology",
+        author: "Kumar, Abbas, Aster",
+        link: "https://www.elsevier.com/books/robbins-basic-pathology/kumar/978-0-323-79018-5"
+      },
+      {
+        title: "Medical Physiology",
+        author: "Guyton and Hall",
+        link: "https://www.elsevier.com/books/guyton-and-hall-textbook-of-medical-physiology/hall/978-0-323-59777-7"
+      },
+      {
+        title: "Goodman & Gilman's The Pharmacological Basis of Therapeutics",
+        author: "Brunton, Hilal-Dandan, Knollmann",
+        link: "https://accesspharmacy.mhmedical.com/book.aspx?bookID=2447"
+      },
+      {
+        title: "Netter's Atlas of Human Anatomy",
+        author: "Frank H. Netter",
+        link: "https://www.elsevier.com/books/netters-atlas-of-human-anatomy/netter/978-0-323-68042-4"
+      }
+    ];
+ 
+    const ethiopianBooks = [
+      {
+        title: "Clinical Practice Guideline Ethiopia",
+        author: "Federal Ministry of Health, Ethiopia",
+        link: "#"
+      },
+      {
+        title: "Ethiopian Essential Medicines List",
+        author: "Ethiopian Food and Drug Authority",
+        link: "#"
+      },
+      {
+        title: "Traditional Ethiopian Herbal Medicine",
+        author: "Various Ethiopian Ethnobotanists",
+        link: "#"
+      }
+    ];
+
+    books.push(...ethiopianBooks);
+
+    // Declare filteredBooks globally and initialize
+    let filteredBooks = [...books];
+
+    // Pagination variables
+    let currentHospitalPage = 1;
+    let currentRemedyPage = 1;
+    let currentDiseasePage = 1;
+    let currentBookPage = 1;
+    const itemsPerPage = 6;
+
+    // Display Hospitals
+    function displayHospitals(page) {
+      const container = document.getElementById('hospitals-container');
+      const pagination = document.getElementById('hospitals-pagination');
+      
+      // Clear previous content
+      container.innerHTML = '';
+      pagination.innerHTML = '';
+      
+      // Calculate items to show
+      const startIndex = (page - 1) * itemsPerPage;
+      const endIndex = startIndex + itemsPerPage;
+      const hospitalsToShow = filteredHospitals.slice(startIndex, endIndex);
+      
+      // Create hospital cards
+      hospitalsToShow.forEach(hospital => {
+        const card = document.createElement('div');
+        card.className = 'hospital-card';
+        
+        card.innerHTML = `
+          <img src="${hospital.image}" alt="${hospital.name}" class="hospital-image">
+          <div class="hospital-info">
+            <h3 class="hospital-name">${hospital.name}</h3>
+            <div class="hospital-location">
+              <i class="fas fa-map-marker-alt"></i>
+              <span>${hospital.location} • ${hospital.distance} away</span>
+            </div>
+            <div class="hospital-features">
+              ${hospital.features.map(feature => `<span class="feature-tag">${feature}</span>`).join('')}
+            </div>
+            <div class="hospital-rating">
+              ${'⭐'.repeat(Math.floor(hospital.rating))} (${hospital.rating})
+            </div>
+            <div class="hospital-actions">
+              <button class="action-btn directions-btn" data-location="${hospital.location}"><i class="fas fa-directions"></i> Directions</button>
+              <button class="action-btn secondary"><i class="fas fa-phone"></i> Call</button>
+            </div>
+          </div>
+        `;
+        
+        container.appendChild(card);
+      });
+      
+      // Add event listeners for directions buttons
+      document.querySelectorAll('.directions-btn').forEach(button => {
+        button.addEventListener('click', function() {
+          const location = this.getAttribute('data-location');
+          const mapUrl = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(location + ", Ethiopia")}`;
+          window.open(mapUrl, '_blank');
+        });
+      });
+      
+      // Create pagination
+      const totalPages = Math.ceil(filteredHospitals.length / itemsPerPage);
+      
+      // Smart pagination logic
+      const maxPagesToShow = 5; // Number of page buttons to show (excluding prev/next)
+      let startPage = Math.max(1, page - Math.floor(maxPagesToShow / 2));
+      let endPage = Math.min(totalPages, startPage + maxPagesToShow - 1);
+      
+      // Adjust startPage if we're near the end
+      if (endPage - startPage + 1 < maxPagesToShow) {
+        startPage = Math.max(1, totalPages - maxPagesToShow + 1);
+      }
+      
+      // Previous button
+      if (page > 1) {
+        const prevBtn = document.createElement('button');
+        prevBtn.className = 'page-btn';
+        prevBtn.innerHTML = '<i class="fas fa-chevron-left"></i> Previous';
+        prevBtn.addEventListener('click', () => {
+          currentHospitalPage = page - 1;
+          displayHospitals(currentHospitalPage);
+        });
+        pagination.appendChild(prevBtn);
+      }
+      
+      // Ellipsis at start if not showing all pages from the beginning
+      if (startPage > 1) {
+        const ellipsis = document.createElement('span');
+        ellipsis.textContent = '...';
+        ellipsis.className = 'pagination-ellipsis';
+        pagination.appendChild(ellipsis);
+      }
+      
+      // Page numbers
+      for (let i = startPage; i <= endPage; i++) {
+        const pageBtn = document.createElement('button');
+        pageBtn.className = `page-btn ${i === page ? 'active' : ''}`;
+        pageBtn.textContent = i;
+        pageBtn.addEventListener('click', () => {
+          currentHospitalPage = i;
+          displayHospitals(i);
+        });
+        pagination.appendChild(pageBtn);
+      }
+      
+      // Ellipsis at end if not showing all pages to the end
+      if (endPage < totalPages) {
+        const ellipsis = document.createElement('span');
+        ellipsis.textContent = '...';
+        ellipsis.className = 'pagination-ellipsis';
+        pagination.appendChild(ellipsis);
+      }
+      
+      // Next button
+      if (page < totalPages) {
+        const nextBtn = document.createElement('button');
+        nextBtn.className = 'page-btn';
+        nextBtn.innerHTML = 'Next <i class="fas fa-chevron-right"></i>';
+        nextBtn.addEventListener('click', () => {
+          currentHospitalPage = page + 1;
+          displayHospitals(currentHospitalPage);
+        });
+        pagination.appendChild(nextBtn);
+      }
+    }
+    
+    let filteredRemedies = [...remedies]; // Initialize here
+
+    // Display Remedies
+    function displayRemedies(page) {
+      const container = document.getElementById('remedies-container');
+      const pagination = document.getElementById('remedies-pagination');
+      
+      // Clear previous content
+      container.innerHTML = '';
+      pagination.innerHTML = '';
+      
+      // Calculate items to show
+      const startIndex = (page - 1) * itemsPerPage;
+      const endIndex = startIndex + itemsPerPage;
+      const remediesToShow = filteredRemedies.slice(startIndex, endIndex); // Use filteredRemedies
+      
+      // Create remedy cards
+      remediesToShow.forEach(remedy => {
+        const card = document.createElement('div');
+        card.className = 'remedy-card';
+        
+        card.innerHTML = `
+          <img src="${remedy.image}" alt="${remedy.name}" class="remedy-image">
+          <div class="remedy-info">
+            <h3 class="remedy-name">${remedy.name}</h3>
+            <p class="remedy-uses"><strong>Uses:</strong> ${remedy.uses}</p>
+            <div class="remedy-preparation">
+              <h4>Preparation:</h4>
+              <p>${remedy.preparation}</p>
+            </div>
+          </div>
+        `;
+        
+        container.appendChild(card);
+      });
+      
+      // Create pagination
+      const totalPages = Math.ceil(filteredRemedies.length / itemsPerPage); // Use filteredRemedies.length
+      
+      // Smart pagination logic
+      const maxPagesToShow = 5; // Number of page buttons to show (excluding prev/next)
+      let startPage = Math.max(1, page - Math.floor(maxPagesToShow / 2));
+      let endPage = Math.min(totalPages, startPage + maxPagesToShow - 1);
+      
+      // Adjust startPage if we're near the end
+      if (endPage - startPage + 1 < maxPagesToShow) {
+        startPage = Math.max(1, totalPages - maxPagesToShow + 1);
+      }
+      
+      // Previous button
+      if (page > 1) {
+        const prevBtn = document.createElement('button');
+        prevBtn.className = 'page-btn';
+        prevBtn.innerHTML = '<i class="fas fa-chevron-left"></i> Previous';
+        prevBtn.addEventListener('click', () => {
+          currentRemedyPage = page - 1;
+          displayRemedies(currentRemedyPage);
+        });
+        pagination.appendChild(prevBtn);
+      }
+      
+      // Ellipsis at start if not showing all pages from the beginning
+      if (startPage > 1) {
+        const ellipsis = document.createElement('span');
+        ellipsis.textContent = '...';
+        ellipsis.className = 'pagination-ellipsis';
+        pagination.appendChild(ellipsis);
+      }
+      
+      // Page numbers
+      for (let i = startPage; i <= endPage; i++) {
+        const pageBtn = document.createElement('button');
+        pageBtn.className = `page-btn ${i === page ? 'active' : ''}`;
+        pageBtn.textContent = i;
+        pageBtn.addEventListener('click', () => {
+          currentRemedyPage = i;
+          displayRemedies(i);
+        });
+        pagination.appendChild(pageBtn);
+      }
+      
+      // Ellipsis at end if not showing all pages to the end
+      if (endPage < totalPages) {
+        const ellipsis = document.createElement('span');
+        ellipsis.textContent = '...';
+        ellipsis.className = 'pagination-ellipsis';
+        pagination.appendChild(ellipsis);
+      }
+      
+      // Next button
+      if (page < totalPages) {
+        const nextBtn = document.createElement('button');
+        nextBtn.className = 'page-btn';
+        nextBtn.innerHTML = 'Next <i class="fas fa-chevron-right"></i>';
+        nextBtn.addEventListener('click', () => {
+          currentRemedyPage = page + 1;
+          displayRemedies(currentRemedyPage);
+        });
+        pagination.appendChild(nextBtn);
+      }
+    }
+    
+    let filteredDiseases = [...diseases]; // Initialize here
+
+    // Display Diseases
+    function displayDiseases(page) {
+      const container = document.getElementById('diseases-container');
+      const pagination = document.getElementById('diseases-pagination');
+      
+      // Clear previous content
+      container.innerHTML = '';
+      pagination.innerHTML = '';
+      
+      // Calculate items to show
+      const startIndex = (page - 1) * itemsPerPage;
+      const endIndex = startIndex + itemsPerPage;
+      const diseasesToShow = filteredDiseases.slice(startIndex, endIndex);
+      
+      // Create disease cards
+      diseasesToShow.forEach(disease => {
+        const card = document.createElement('div');
+        card.className = 'disease-card';
+        
+        card.innerHTML = `
+          <img src="${disease.image}" alt="${disease.name}" class="disease-image">
+          <div class="disease-info">
+            <h3 class="disease-name">${disease.name}</h3>
+            <p class="disease-symptoms"><strong>Symptoms:</strong> ${disease.symptoms}</p>
+            <div class="disease-prevention">
+              <h4>Prevention:</h4>
+              <p>${disease.prevention}</p>
+            </div>
+            <div class="disease-before-you-get">
+              <h4>Before You Get It:</h4>
+              <p>${disease.beforeYouGet}</p>
+            </div>
+            <div class="disease-health-tips">
+              <h4>Health Tips:</h4>
+              <p>${disease.healthTips}</p>
+            </div>
+            <div class="disease-hospitals">
+              <h4>Recommended Hospitals:</h4>
+              <p>${disease.recommendedHospitals.join(', ')}</p>
+            </div>
+          </div>
+        `;
+        
+        container.appendChild(card);
+      });
+      
+      // Create pagination
+      const totalPages = Math.ceil(filteredDiseases.length / itemsPerPage);
+      
+      // Smart pagination logic
+      const maxPagesToShow = 5; // Number of page buttons to show (excluding prev/next)
+      let startPage = Math.max(1, page - Math.floor(maxPagesToShow / 2));
+      let endPage = Math.min(totalPages, startPage + maxPagesToShow - 1);
+      
+      // Adjust startPage if we're near the end
+      if (endPage - startPage + 1 < maxPagesToShow) {
+        startPage = Math.max(1, totalPages - maxPagesToShow + 1);
+      }
+      
+      // Previous button
+      if (page > 1) {
+        const prevBtn = document.createElement('button');
+        prevBtn.className = 'page-btn';
+        prevBtn.innerHTML = '<i class="fas fa-chevron-left"></i> Previous';
+        prevBtn.addEventListener('click', () => {
+          currentDiseasePage = page - 1;
+          displayDiseases(currentDiseasePage);
+        });
+        pagination.appendChild(prevBtn);
+      }
+      
+      // Ellipsis at start if not showing all pages from the beginning
+      if (startPage > 1) {
+        const ellipsis = document.createElement('span');
+        ellipsis.textContent = '...';
+        ellipsis.className = 'pagination-ellipsis';
+        pagination.appendChild(ellipsis);
+      }
+      
+      // Page numbers
+      for (let i = startPage; i <= endPage; i++) {
+        const pageBtn = document.createElement('button');
+        pageBtn.className = `page-btn ${i === page ? 'active' : ''}`;
+        pageBtn.textContent = i;
+        pageBtn.addEventListener('click', () => {
+          currentDiseasePage = i;
+          displayDiseases(i);
+        });
+        pagination.appendChild(pageBtn);
+      }
+      
+      // Ellipsis at end if not showing all pages to the end
+      if (endPage < totalPages) {
+        const ellipsis = document.createElement('span');
+        ellipsis.textContent = '...';
+        ellipsis.className = 'pagination-ellipsis';
+        pagination.appendChild(ellipsis);
+      }
+      
+      // Next button
+      if (page < totalPages) {
+        const nextBtn = document.createElement('button');
+        nextBtn.className = 'page-btn';
+        nextBtn.innerHTML = 'Next <i class="fas fa-chevron-right"></i>';
+        nextBtn.addEventListener('click', () => {
+          currentDiseasePage = page + 1;
+          displayDiseases(currentDiseasePage);
+        });
+        pagination.appendChild(nextBtn);
+      }
+    }
+
+    // Display Books
+    function displayBooks(page) {
+      const container = document.getElementById('books-container');
+      const pagination = document.getElementById('books-pagination');
+      
+      // Clear previous content
+      container.innerHTML = '';
+      pagination.innerHTML = '';
+      
+      // Calculate items to show
+      const startIndex = (page - 1) * itemsPerPage;
+      const endIndex = startIndex + itemsPerPage;
+      const booksToShow = filteredBooks.slice(startIndex, endIndex); // Use filteredBooks
+      
+      // Create book cards
+      booksToShow.forEach(book => {
+        const card = document.createElement('div');
+        card.className = 'book-card';
+        
+        card.innerHTML = `
+          <h3 class="book-title">${book.title}</h3>
+          <p class="book-author">By ${book.author}</p>
+          <a href="${book.link}" target="_blank" class="btn btn-secondary">View Details</a>
+        `;
+        
+        container.appendChild(card);
+      });
+      
+      // Create pagination
+      const totalPages = Math.ceil(filteredBooks.length / itemsPerPage); // Use filteredBooks.length
+      
+      // Smart pagination logic
+      const maxPagesToShow = 5; // Number of page buttons to show (excluding prev/next)
+      let startPage = Math.max(1, page - Math.floor(maxPagesToShow / 2));
+      let endPage = Math.min(totalPages, startPage + maxPagesToShow - 1);
+      
+      // Adjust startPage if we're near the end
+      if (endPage - startPage + 1 < maxPagesToShow) {
+        startPage = Math.max(1, totalPages - maxPagesToShow + 1);
+      }
+      
+      // Previous button
+      if (page > 1) {
+        const prevBtn = document.createElement('button');
+        prevBtn.className = 'page-btn';
+        prevBtn.innerHTML = '<i class="fas fa-chevron-left"></i> Previous';
+        prevBtn.addEventListener('click', () => {
+          currentBookPage = page - 1;
+          displayBooks(currentBookPage);
+        });
+        pagination.appendChild(prevBtn);
+      }
+      
+      // Ellipsis at start if not showing all pages from the beginning
+      if (startPage > 1) {
+        const ellipsis = document.createElement('span');
+        ellipsis.textContent = '...';
+        ellipsis.className = 'pagination-ellipsis';
+        pagination.appendChild(ellipsis);
+      }
+      
+      // Page numbers
+      for (let i = startPage; i <= endPage; i++) {
+        const pageBtn = document.createElement('button');
+        pageBtn.className = `page-btn ${i === page ? 'active' : ''}`;
+        pageBtn.textContent = i;
+        pageBtn.addEventListener('click', () => {
+          currentBookPage = i;
+          displayBooks(i);
+        });
+        pagination.appendChild(pageBtn);
+      }
+      
+      // Ellipsis at end if not showing all pages to the end
+      if (endPage < totalPages) {
+        const ellipsis = document.createElement('span');
+        ellipsis.textContent = '...';
+        ellipsis.className = 'pagination-ellipsis';
+        pagination.appendChild(ellipsis);
+      }
+      
+      // Next button
+      if (page < totalPages) {
+        const nextBtn = document.createElement('button');
+        nextBtn.className = 'page-btn';
+        nextBtn.innerHTML = 'Next <i class="fas fa-chevron-right"></i>';
+        nextBtn.addEventListener('click', () => {
+          currentBookPage = page + 1;
+          displayBooks(currentBookPage);
+        });
+        pagination.appendChild(nextBtn);
+      }
+    }
+
+    // Initialize when page loads
+    document.addEventListener('DOMContentLoaded', function() {
+      // Display initial content
+      displayHospitals(currentHospitalPage);
+      displayRemedies(currentRemedyPage); // Initialize remedies section
+      displayDiseases(currentDiseasePage); // Initialize diseases section
+      displayBooks(currentBookPage); // Initialize books section
+      
+      // Smooth scrolling for navigation links
+      document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function (e) {
+          e.preventDefault();
+          
+          const targetId = this.getAttribute('href');
+          if (targetId === '#') {
+            window.scrollTo({
+              top: 0,
+              behavior: 'smooth'
+            });
+            return;
+          }
+          
+          const targetElement = document.querySelector(targetId);
+          if (targetElement) {
+            window.scrollTo({
+              top: targetElement.offsetTop - 80,
+              behavior: 'smooth'
+            });
+          }
+        });
+      });
+      
+      // Update active nav link on scroll
+      window.addEventListener('scroll', function() {
+        const sections = document.querySelectorAll('section[id]');
+        const navLinks = document.querySelectorAll('.nav-link');
+        
+        let current = '';
+        sections.forEach(section => {
+          const sectionTop = section.offsetTop;
+          const sectionHeight = section.clientHeight;
+          if (scrollY >= sectionTop - 100) {
+            current = section.getAttribute('id');
+          }
+        });
+        
+        navLinks.forEach(link => {
+          link.classList.remove('active');
+          if (link.getAttribute('href') === `#${current}`) {
+            link.classList.add('active');
+          }
+        });
+      });
+      
+      // Intersection Observer for section animations
+      const observerOptions = {
+        root: null,
+        rootMargin: '0px',
+        threshold: 0.2
+      };
+
+      const observer = new IntersectionObserver((entries, observer) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('section-visible');
+            observer.unobserve(entry.target);
+          }
+        });
+      }, observerOptions);
+
+      document.querySelectorAll('.section-hidden').forEach(section => {
+        observer.observe(section);
+      });
+    });
+
+    // Scroll to Contact Section (formerly Feedback Section)
+    function scrollToFeedback() {
+      const contactSection = document.getElementById('contact');
+      if (contactSection) {
+        window.scrollTo({
+          top: contactSection.offsetTop - 80, // Adjust for fixed header height
+          behavior: 'smooth'
+        });
+      }
+    }
+
+    // Hospital Search Functionality
+    document.getElementById('hospital-search').addEventListener('input', function() {
+      searchHospitals(this.value);
+    });
+
+    function searchHospitals(searchTerm) {
+      const lowerCaseSearchTerm = searchTerm.toLowerCase();
+      filteredHospitals = hospitals.filter(hospital => {
+        return (
+          hospital.name.toLowerCase().includes(lowerCaseSearchTerm) ||
+          hospital.location.toLowerCase().includes(lowerCaseSearchTerm) ||
+          hospital.features.some(feature =>
+            feature.toLowerCase().includes(lowerCaseSearchTerm)
+          )
+        );
+      });
+      currentHospitalPage = 1; // Reset to first page for new search results
+      displayHospitals(currentHospitalPage);
+    }
+
+    // Function to search remedies
+    document.getElementById('remedy-search').addEventListener('input', function() {
+      searchRemedies(this.value);
+    });
+    function searchRemedies(searchTerm) {
+      const lowerCaseSearchTerm = searchTerm.toLowerCase();
+      filteredRemedies = remedies.filter(remedy => {
+        return (
+          remedy.name.toLowerCase().includes(lowerCaseSearchTerm) ||
+          remedy.uses.toLowerCase().includes(lowerCaseSearchTerm) ||
+          remedy.preparation.toLowerCase().includes(lowerCaseSearchTerm)
+        );
+      });
+      currentRemedyPage = 1; // Reset to first page for new search results
+      displayRemedies(currentRemedyPage);
+    }
+
+
+    // Function to search diseases
+    document.getElementById('disease-search').addEventListener('input', function() {
+      searchDiseases(this.value);
+    });
+    function searchDiseases(searchTerm) {
+      const lowerCaseSearchTerm = searchTerm.toLowerCase();
+      filteredDiseases = diseases.filter(disease => {
+        return (
+          disease.name.toLowerCase().includes(lowerCaseSearchTerm) ||
+          disease.symptoms.toLowerCase().includes(lowerCaseSearchTerm) ||
+          disease.prevention.toLowerCase().includes(lowerCaseSearchTerm) ||
+          (disease.beforeYouGet && disease.beforeYouGet.toLowerCase().includes(lowerCaseSearchTerm)) ||
+          (disease.healthTips && disease.healthTips.toLowerCase().includes(lowerCaseSearchTerm)) ||
+          disease.recommendedHospitals.some(hospital =>
+            hospital.toLowerCase().includes(lowerCaseSearchTerm)
+          )
+        );
+      });
+      currentDiseasePage = 1; // Reset to first page for new search results
+      displayDiseases(currentDiseasePage);
+    }
+
+
+    // Book Search Functionality
+    document.getElementById('book-search').addEventListener('input', function() {
+      searchBooks(this.value);
+    });
+
+    function searchBooks(searchTerm) {
+      const lowerCaseSearchTerm = searchTerm.toLowerCase();
+      const filteredBooks = books.filter(book => {
+        return (
+          book.title.toLowerCase().includes(lowerCaseSearchTerm) ||
+          book.author.toLowerCase().includes(lowerCaseSearchTerm)
+        );
+      });
+      currentBookPage = 1; // Reset to first page for new search results
+      displayBooks(currentBookPage);
+    }
+  </script>
+</body>
+</html>
